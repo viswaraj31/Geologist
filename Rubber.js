@@ -3,19 +3,21 @@ class Rubber{
         var options={
             'density':2,
             'friction':1.0,
-            'restitution':0.5,
-            isStatic: true
+            'restitution':2,
             
         }
-        this.body = Bodies.elipse(x,y,radius)
+        this.body = Bodies.circle(x,y,radius,options)
         this.radius = radius
+        World.add(world,this.body);
     }
     display(){
-       // this.body.position.x = mouseX;
-        //this.body.position.y = mouseY;
         var pos =this.body.position;
-        elipse(pos.x,pos.y,this.radius);
-
+        push();
+        translate(pos.x,pos.y)
+        rotate(this.body.angle);
+        ellipseMode(RADIUS);
+        ellipse(0,0,this.radius,this.radius);
+        pop();
     }
 
 }
